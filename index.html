@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivam Yadav — Software Engineer</title>
+<meta name="description" content="Shivam Yadav — CSE student at IIT Bhilai. Full-stack developer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14;
+    --panel:#121722;
+    --panel-alt:#151b28;
+    --line:#232a3a;
+    --line-soft:#1a2030;
+    --text:#e7eaf1;
+    --muted:#8b93a8;
+    --muted-dim:#5b6478;
+    --accent:#3ed598;
+    --accent-dim:#2a8f68;
+    --accent-amber:#f2b705;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --radius:3px;
+    --maxw:920px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(62,213,152,0.06), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(242,183,5,0.04), transparent 40%);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:#04150e;}
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,14,20,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px;
+  }
+  .brand{
+    font-family:var(--mono); font-weight:600; font-size:14px;
+    color:var(--text); text-decoration:none; letter-spacing:0.02em;
+  }
+  .brand .dot{color:var(--accent);}
+  .navlinks{display:flex; gap:22px; overflow-x:auto; scrollbar-width:none;}
+  .navlinks::-webkit-scrollbar{display:none;}
+  .navlinks a{
+    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+    text-decoration:none; white-space:nowrap; padding:4px 2px;
+    border-bottom:1px solid transparent; transition:color .15s, border-color .15s;
+  }
+  .navlinks a:hover{color:var(--accent); border-color:var(--accent-dim);}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:64px 0 40px; border-bottom:1px solid var(--line);}
+  .judge-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:11.5px; color:var(--muted);
+    border:1px solid var(--line); background:var(--panel);
+    padding:5px 10px; border-radius:999px; margin-bottom:22px;
+  }
+  .judge-tag .led{
+    width:7px; height:7px; border-radius:50%; background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    animation:pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.35;}}
+
+  h1.name{
+    font-family:var(--sans); font-weight:700;
+    font-size:clamp(32px, 6vw, 52px);
+    margin:0 0 10px; letter-spacing:-0.01em; line-height:1.08;
+  }
+  .role-line{
+    font-family:var(--mono); font-size:15px; color:var(--accent);
+    margin:0 0 20px;
+  }
+  .role-line::before{content:'> '; color:var(--muted-dim);}
+  .typewrap{
+    border-left:2px solid var(--line); padding-left:16px;
+    max-width:640px; color:var(--muted); font-size:15.5px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:28px;}
+  .btn{
+    font-family:var(--mono); font-size:13px; text-decoration:none;
+    padding:10px 18px; border-radius:var(--radius);
+    border:1px solid var(--line); color:var(--text);
+    display:inline-flex; align-items:center; gap:8px;
+    transition:border-color .15s, transform .15s, background .15s;
+  }
+  .btn:hover{border-color:var(--accent); transform:translateY(-1px);}
+  .btn.primary{background:var(--accent); color:#04150e; border-color:var(--accent); font-weight:600;}
+  .btn.primary:hover{background:#4fe3a6;}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{padding:56px 0; border-bottom:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:12px; margin-bottom:28px;}
+  .sec-head .idx{font-family:var(--mono); color:var(--accent); font-size:13px;}
+  .sec-head h2{font-size:22px; margin:0; font-weight:700;}
+  .sec-head .rule{flex:1; height:1px; background:var(--line);}
+  .sec-sub{color:var(--muted); font-size:14.5px; margin:-16px 0 26px; max-width:600px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-text{max-width:680px; color:var(--muted); font-size:15.5px;}
+  .about-text strong{color:var(--text); font-weight:600;}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-table{width:100%; border-collapse:collapse; font-size:14px;}
+  .edu-table th{
+    text-align:left; font-family:var(--mono); font-weight:500; font-size:11px;
+    color:var(--muted-dim); text-transform:uppercase; letter-spacing:0.06em;
+    padding:0 12px 10px; border-bottom:1px solid var(--line);
+  }
+  .edu-table td{
+    padding:14px 12px; border-bottom:1px solid var(--line-soft); vertical-align:top;
+  }
+  .edu-table tr:last-child td{border-bottom:none;}
+  .edu-table .degree{font-weight:600; color:var(--text);}
+  .edu-table .score{font-family:var(--mono); color:var(--accent);}
+
+  /* ---------- SKILLS ---------- */
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:20px;}
+  .skill-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:18px 20px;
+  }
+  .skill-card .head{
+    display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;
+  }
+  .skill-card .head h3{font-size:13px; margin:0; font-family:var(--mono); color:var(--text); font-weight:600;}
+  .skill-card .head .pass{font-family:var(--mono); font-size:11px; color:var(--accent);}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--mono); font-size:12px; color:var(--muted);
+    border:1px solid var(--line); padding:5px 10px; border-radius:4px;
+    background:var(--panel-alt);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .submission{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px;
+    margin-bottom:22px; overflow:hidden;
+  }
+  .submission-head{
+    display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px;
+    padding:16px 20px; border-bottom:1px solid var(--line); background:var(--panel-alt);
+  }
+  .submission-head .left{display:flex; align-items:center; gap:12px;}
+  .sub-id{font-family:var(--mono); font-size:12px; color:var(--muted-dim);}
+  .proj-title{font-size:17px; font-weight:700; margin:0;}
+  .verdict{
+    font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:0.03em;
+    color:var(--accent); border:1px solid var(--accent-dim); background:rgba(62,213,152,0.08);
+    padding:4px 10px; border-radius:999px;
+  }
+  .submission-body{padding:20px;}
+  .meta-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:14px; margin-bottom:16px; padding-bottom:16px; border-bottom:1px dashed var(--line);
+  }
+  .meta-grid div{font-size:12px;}
+  .meta-grid .k{font-family:var(--mono); color:var(--muted-dim); text-transform:uppercase; letter-spacing:0.05em; font-size:10.5px; margin-bottom:4px;}
+  .meta-grid .v{color:var(--text); font-size:13px;}
+  .proj-notes{list-style:none; margin:0 0 18px; padding:0;}
+  .proj-notes li{
+    position:relative; padding-left:20px; margin-bottom:10px; color:var(--muted); font-size:14px;
+  }
+  .proj-notes li::before{content:'+'; position:absolute; left:0; color:var(--accent); font-family:var(--mono); font-weight:700;}
+  .proj-links{display:flex; gap:10px; flex-wrap:wrap;}
+  .proj-links a{
+    font-family:var(--mono); font-size:12px; text-decoration:none; color:var(--accent);
+    border:1px solid var(--accent-dim); padding:7px 14px; border-radius:4px;
+    transition:background .15s;
+  }
+  .proj-links a:hover{background:rgba(62,213,152,0.1);}
+
+  /* ---------- ACTIVITY ---------- */
+  .activity-row{
+    display:flex; gap:16px; padding:14px 0; border-bottom:1px solid var(--line-soft);
+    align-items:flex-start;
+  }
+  .activity-row:last-child{border-bottom:none;}
+  .activity-row .tag{
+    font-family:var(--mono); font-size:10.5px; color:var(--accent-amber);
+    border:1px solid rgba(242,183,5,0.3); padding:3px 8px; border-radius:4px;
+    white-space:nowrap; margin-top:2px;
+  }
+  .activity-row .desc{color:var(--muted); font-size:14px;}
+  .activity-row .desc strong{color:var(--text);}
+
+  .course-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px;}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{padding:56px 0 40px;}
+  .contact-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:18px; margin-bottom:40px;
+  }
+  .contact-card{
+    border:1px solid var(--line); border-radius:6px; padding:16px 18px;
+    background:var(--panel); text-decoration:none; color:var(--text);
+    transition:border-color .15s, transform .15s;
+  }
+  .contact-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .contact-card .k{font-family:var(--mono); font-size:10.5px; color:var(--muted-dim); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:6px;}
+  .contact-card .v{font-size:14px; word-break:break-word;}
+  .foot-line{
+    text-align:center; font-family:var(--mono); font-size:11.5px; color:var(--muted-dim);
+    padding-top:24px; border-top:1px solid var(--line);
+  }
+
+  .note{
+    font-family:var(--mono); font-size:11px; color:var(--muted-dim);
+    text-align:center; margin-top:10px;
+  }
+
+  @media (max-width:640px){
+    .sec-head h2{font-size:19px;}
+    header.hero{padding:48px 0 32px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">shivam<span class="dot">@</span>yadav</a>
+    <div class="navlinks">
+      <a href="#about">about</a>
+      <a href="#education">education</a>
+      <a href="#skills">skills</a>
+      <a href="#projects">projects</a>
+      <a href="#activity">activity</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="judge-tag"><span class="led"></span> submission accepted &middot; all test cases passed</div>
+    <h1 class="name">Shivam Yadav</h1>
+    <p class="role-line">B.Tech CSE, IIT Bhilai &middot; Full-Stack Developer</p>
+    <div class="typewrap">
+      Third-year CSE student building production-ready full-stack web applications.
+      Solid foundations in data structures &amp; algorithms, backed by hands-on
+      experience shipping projects end-to-end &mdash; from schema design to deployment.
+    </div>
+    <div class="hero-actions">
+      <a class="btn primary" href="mailto:shivam9336384217@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/Shivam9336" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/shivam-yadav-0a2391323" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://leetcode.com/u/Shiv174/" target="_blank" rel="noopener">LeetCode</a>
+      <a class="btn" href="https://codeforces.com/profile/shivam933638" target="_blank" rel="noopener">Codeforces</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">01</span><h2>About</h2><span class="rule"></span></div>
+    <p class="about-text">
+      I'm a third-year <strong>Computer Science &amp; Engineering</strong> student at
+      <strong>IIT Bhilai</strong>, currently holding a CGPA of <strong>8.88</strong>.
+      I enjoy designing and shipping full-stack applications &mdash; from REST APIs
+      and auth systems to responsive UIs &mdash; and I spend a good chunk of free time
+      solving problems on LeetCode and Codeforces to keep my DSA fundamentals sharp.
+      I'm looking for an SDE internship where I can apply what I've built so far and
+      learn from an engineering team working on real, high-impact problems.
+    </p>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">02</span><h2>Education</h2><span class="rule"></span></div>
+    <table class="edu-table">
+      <thead>
+        <tr><th>Degree</th><th>Institution</th><th>Year</th><th>Score</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="degree">B.Tech, Computer Science &amp; Engineering</td>
+          <td>IIT Bhilai</td>
+          <td>2024 &ndash; 2028</td>
+          <td class="score">CGPA 8.88</td>
+        </tr>
+        <tr>
+          <td class="degree">12th (ICSE)</td>
+          <td>St. Joseph's School, Gorakhpur</td>
+          <td>2024</td>
+          <td class="score">96.8%</td>
+        </tr>
+        <tr>
+          <td class="degree">10th (ICSE)</td>
+          <td>St. Joseph's School, Gorakhpur</td>
+          <td>2022</td>
+          <td class="score">97.2%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="sec-sub" style="margin-top:24px; margin-bottom:0;">Relevant coursework</div>
+    <div class="course-chips">
+      <span class="chip">Data Structures &amp; Algorithms</span>
+      <span class="chip">Database Management Systems</span>
+      <span class="chip">Operating Systems</span>
+      <span class="chip">Computer Organization &amp; Architecture</span>
+      <span class="chip">Compiler Design</span>
+      <span class="chip">Artificial Intelligence</span>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">03</span><h2>Skills</h2><span class="rule"></span></div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <div class="head"><h3>languages</h3><span class="pass">3/3 passed</span></div>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="head"><h3>frontend</h3><span class="pass">4/4 passed</span></div>
+        <div class="chips">
+          <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">React.js</span><span class="chip">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="head"><h3>backend</h3><span class="pass">3/3 passed</span></div>
+        <div class="chips">
+          <span class="chip">Node.js</span><span class="chip">Express.js</span><span class="chip">Passport.js</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="head"><h3>database &amp; tools</h3><span class="pass">4/4 passed</span></div>
+        <div class="chips">
+          <span class="chip">MongoDB</span><span class="chip">SQL</span><span class="chip">Cloudinary</span><span class="chip">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">04</span><h2>Projects</h2><span class="rule"></span></div>
+
+    <div class="submission">
+      <div class="submission-head">
+        <div class="left">
+          <span class="sub-id">#0002</span>
+          <h3 class="proj-title">TravelMore</h3>
+        </div>
+        <span class="verdict">ACCEPTED</span>
+      </div>
+      <div class="submission-body">
+        <div class="meta-grid">
+          <div><div class="k">Type</div><div class="v">Full-stack web app</div></div>
+          <div><div class="k">Stack</div><div class="v">Node.js, Express, MongoDB, EJS</div></div>
+          <div><div class="k">Pattern</div><div class="v">MVC</div></div>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:0;">
+          An Airbnb-inspired property listing &amp; review platform, built end-to-end
+          with authentication, image uploads, and a full REST API layer.
+        </p>
+        <ul class="proj-notes">
+          <li>Architected the full stack from scratch following the MVC pattern for scalability and maintainability.</li>
+          <li>Built secure authentication and session management with Passport.js, express-session, and a MongoDB-backed session store, guarding all sensitive routes with custom authorization middleware.</li>
+          <li>Designed a RESTful CRUD API for listings with owner-based access control, category filtering across 10+ property types, and Joi schema validation.</li>
+          <li>Integrated Cloudinary + Multer for dynamic image uploads with cloud storage and delivery.</li>
+          <li>Built a review/rating system with author-level permissions, cascading deletes, and real-time flash-message feedback.</li>
+        </ul>
+        <div class="proj-links">
+          <a href="https://travelmore-ud03.onrender.com/" target="_blank" rel="noopener">Live demo &rarr;</a>
+          <a href="https://github.com/Shivam9336/TravelMore" target="_blank" rel="noopener">Source code &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="submission">
+      <div class="submission-head">
+        <div class="left">
+          <span class="sub-id">#0001</span>
+          <h3 class="proj-title">Keepr</h3>
+        </div>
+        <span class="verdict">ACCEPTED</span>
+      </div>
+      <div class="submission-body">
+        <div class="meta-grid">
+          <div><div class="k">Type</div><div class="v">Full-stack web app</div></div>
+          <div><div class="k">Stack</div><div class="v">HTML, CSS, JavaScript, PHP</div></div>
+          <div><div class="k">Focus</div><div class="v">Responsive UI</div></div>
+        </div>
+        <p style="color:var(--muted); font-size:14px; margin-top:0;">
+          A personal notes web app for creating, editing, and deleting notes through
+          a clean, intuitive interface.
+        </p>
+        <ul class="proj-notes">
+          <li>Developed a full-stack notes app with create, edit, and delete functionality.</li>
+          <li>Designed a responsive UI in HTML/CSS for a consistent experience across devices and screen sizes.</li>
+          <li>Implemented dynamic note handling and smooth interactions with vanilla JavaScript.</li>
+        </ul>
+        <div class="proj-links">
+          <a href="https://keepr.wuaze.com/" target="_blank" rel="noopener">Live demo &rarr;</a>
+          <a href="https://github.com/Priyanshu-2308/Keepr" target="_blank" rel="noopener">Source code &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="activity">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">05</span><h2>Extracurricular</h2><span class="rule"></span></div>
+    <div class="activity-row">
+      <span class="tag">CLUB</span>
+      <div class="desc"><strong>Blockchain Club, IIT Bhilai</strong> &mdash; Core Member</div>
+    </div>
+    <div class="activity-row">
+      <span class="tag">SPORT</span>
+      <div class="desc">Active in <strong>cricket</strong> and <strong>football</strong></div>
+    </div>
+    <div class="activity-row">
+      <span class="tag">LANG</span>
+      <div class="desc">Fluent in <strong>English</strong> and <strong>Hindi</strong></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="sec-head"><span class="idx">06</span><h2>Contact</h2><span class="rule"></span></div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:shivam9336384217@gmail.com">
+        <div class="k">Email</div>
+        <div class="v">shivam9336384217@gmail.com</div>
+      </a>
+      <a class="contact-card" href="tel:+919336384217">
+        <div class="k">Phone</div>
+        <div class="v">+91 93363 84217</div>
+      </a>
+      <div class="contact-card" style="cursor:default;">
+        <div class="k">Location</div>
+        <div class="v">Gorakhpur, Uttar Pradesh, India</div>
+      </div>
+      <a class="contact-card" href="https://github.com/Shivam9336" target="_blank" rel="noopener">
+        <div class="k">GitHub</div>
+        <div class="v">github.com/Shivam9336</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/shivam-yadav-0a2391323" target="_blank" rel="noopener">
+        <div class="k">LinkedIn</div>
+        <div class="v">linkedin.com/in/shivam-yadav</div>
+      </a>
+      <a class="contact-card" href="https://leetcode.com/u/Shiv174/" target="_blank" rel="noopener">
+        <div class="k">LeetCode</div>
+        <div class="v">leetcode.com/u/Shiv174</div>
+      </a>
+      <a class="contact-card" href="https://codeforces.com/profile/shivam933638" target="_blank" rel="noopener">
+        <div class="k">Codeforces</div>
+        <div class="v">codeforces.com/profile/shivam933638</div>
+      </a>
+    </div>
+    <div class="foot-line">// built by Shivam Yadav &middot; last compiled 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
